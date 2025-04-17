@@ -95,9 +95,9 @@ void loop()
   for(int i = weight_vector[step-1]; i > weight_vector[0]; i-=1)
   {
      servo_w.write(i);
-     delay(3);
+     delay(8);
   }
-  delay(500);
+  delay(200);
   for(int i=height_vector[step-1];i>height_vector[0];i-=1)
   {
     servo_h.write(i);
