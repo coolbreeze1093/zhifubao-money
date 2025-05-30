@@ -7,12 +7,12 @@ int APin = 13;
 Servo servo_h;
 Servo servo_w;
 int freq = 1000;
-const double start_delay = 2.5;
+const double start_delay = 3.0;
 const float end_delay = 12.0;
-const float height_start = 7;
-const float height_min = 3;
-const float height_max = 80;
-const float weight_max = 80;
+const float height_start = 6;
+const float height_min =3;
+const float height_max = 130;
+const float weight_max = 90;
 const float weight_min = 45;
 const int step = 50;
 
@@ -22,12 +22,12 @@ std::vector<float> weight_vector;
 
 void delayfunc(std::vector<float> &deltas,float start = 5, float end = 12, int stepnum = 70)
 {
-  float b = end;
-  float a = (start - b) / pow(stepnum, 2);
+  //float b = end;
+  //float a = (start - b) / pow(stepnum, 2);
 
   for (int i = 0; i < stepnum; i += 1)
   {
-    deltas.push_back(a * pow(i, 2) + b);
+    deltas.push_back(0.015 * pow(i-18, 2)+  start);
   }
 }
 
@@ -92,24 +92,24 @@ void loop()
 
   //Serial.println(rand_val);
 
-  for(int i = weight_vector[step-1]; i > weight_vector[0]; i-=1)
+  for(int i = weight_vector[step-1]; i > weight_vector[0]; i-=2)
   {
      servo_w.write(i);
-     delay(8);
+     delay(12);
   }
-  delay(200);
-  for(int i=height_vector[step-1];i>height_vector[0];i-=1)
+  
+  for(int i=height_vector[step-1];i>height_vector[0];i-=2)
   {
     servo_h.write(i);
-    delay(3);
+    delay(12);
   }
+  delay(50);
+  servo_w.release();
+  servo_h.release();  
+  delay(500);
   
   for (int i = 0; i < step; i++)
   {
-    for(int j=0;j<10;j++)
-    {
-
-    }
     servo_w.write(weight_vector[i]);
     servo_h.write(height_vector[i]);
     delay(delay_vector[i]);
@@ -121,4 +121,8 @@ void loop()
     Serial.println(weight_vector[i]);
     //Serial.println("***********");
   }
+  delay(100);
+  servo_w.release();
+  servo_h.release();  
+
 }
