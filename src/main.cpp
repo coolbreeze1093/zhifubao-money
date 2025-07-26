@@ -77,8 +77,8 @@ void setup()
   ESP32PWM::allocateTimer(3);
   Serial.begin(115200);
 
-  servo_h.attach(12);
-  servo_w.attach(14);
+  servo_h.attach(16);
+  servo_w.attach(17);
 
   delayfunc(delay_vector,start_delay, end_delay, step);
   heightFunc(height_vector,height_start, height_max,height_min, step);
