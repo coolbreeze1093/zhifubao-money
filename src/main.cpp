@@ -9,8 +9,8 @@ Servo servo_w;
 int freq = 1000;
 const double start_delay = 3.0;
 const float end_delay = 12.0;
-const float height_start = 6;
-const float height_min =3;
+const float height_start = 15;
+const float height_min =12;
 const float height_max = 130;
 const float weight_max = 90;
 const float weight_min = 45;
@@ -77,8 +77,8 @@ void setup()
   ESP32PWM::allocateTimer(3);
   Serial.begin(115200);
 
-  servo_h.attach(APin);
-  servo_w.attach(12);
+  servo_h.attach(12);
+  servo_w.attach(14);
 
   delayfunc(delay_vector,start_delay, end_delay, step);
   heightFunc(height_vector,height_start, height_max,height_min, step);
@@ -87,7 +87,7 @@ void setup()
 }
 void loop()
 {
-  int rand_val = random(1, 10);
+  int rand_val = random(2, 8);
   delay(rand_val * 1000);
 
   //Serial.println(rand_val);

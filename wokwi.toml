@@ -1,5 +1,5 @@
 [wokwi]
 version=1
 [parts]
-servo1 = { type="servo", pin=12 }
+servo1 = { type="servo", pin=14 }
 servo2 = { type="servo", pin=13 }
